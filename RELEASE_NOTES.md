@@ -200,7 +200,6 @@ See [LICENSE](LICENSE) for full details.
 
 - 🌐 Website: [onu.ro](https://www.onu.ro)
 - 💼 GitHub: [@costel21d](https://github.com/costel21d)
-- 📧 Email: costel21d@yahoo.com
 
 ---
 

@@ -249,7 +249,6 @@ See the [LICENSE](LICENSE) file for details.
 **Constantin Onu**
 
 - 🌐 Website: [onu.ro](https://www.onu.ro)
-- 📧 Email: costel21d@yahoo.com
 - 💼 GitHub: [@costel21d](https://github.com/costel21d)
 
 ---
