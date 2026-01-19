@@ -20,6 +20,10 @@ function anpc_display_install() {
     osc_set_preference('sal_link_url', 'https://anpc.ro/ce-este-sal/', 'anpc_display', 'STRING');
     osc_set_preference('sol_link_url', 'https://ec.europa.eu/consumers/odr', 'anpc_display', 'STRING');
     osc_set_preference('enable_plugin', '1', 'anpc_display', 'BOOLEAN');
+    osc_set_preference('display_position', 'footer', 'anpc_display', 'STRING');
+    osc_set_preference('icon_size', 'medium', 'anpc_display', 'STRING');
+    osc_set_preference('custom_css', '', 'anpc_display', 'STRING');
+    osc_set_preference('open_new_tab', '1', 'anpc_display', 'BOOLEAN');
 }
 
 function anpc_display_uninstall() {
@@ -27,6 +31,10 @@ function anpc_display_uninstall() {
     osc_delete_preference('sal_link_url', 'anpc_display');
     osc_delete_preference('sol_link_url', 'anpc_display');
     osc_delete_preference('enable_plugin', 'anpc_display');
+    osc_delete_preference('display_position', 'anpc_display');
+    osc_delete_preference('icon_size', 'anpc_display');
+    osc_delete_preference('custom_css', 'anpc_display');
+    osc_delete_preference('open_new_tab', 'anpc_display');
 }
 
 /*
@@ -61,13 +69,27 @@ function anpc_display_footer() {
 
     $sal_url = osc_get_preference('sal_link_url', 'anpc_display');
     $sol_url = osc_get_preference('sol_link_url', 'anpc_display');
+    $icon_size = osc_get_preference('icon_size', 'anpc_display');
+    $custom_css = osc_get_preference('custom_css', 'anpc_display');
+    $open_new_tab = osc_get_preference('open_new_tab', 'anpc_display');
     
     // Check if empty, fallback to defaults just in case
     if(empty($sal_url)) $sal_url = 'https://anpc.ro/ce-este-sal/';
     if(empty($sol_url)) $sol_url = 'https://ec.europa.eu/consumers/odr';
+    if(empty($icon_size)) $icon_size = 'medium';
 
     $sal_img = osc_plugin_url(__FILE__) . 'assets/sal.png';
     $sol_img = osc_plugin_url(__FILE__) . 'assets/sol.png';
+    
+    // Define size presets
+    $sizes = array(
+        'small' => array('max-width' => '150px', 'max-height' => '35px'),
+        'medium' => array('max-width' => '250px', 'max-height' => '50px'),
+        'large' => array('max-width' => '350px', 'max-height' => '70px')
+    );
+    
+    $current_size = isset($sizes[$icon_size]) ? $sizes[$icon_size] : $sizes['medium'];
+    $target_attr = ($open_new_tab == '1') ? 'target="_blank"' : '';
     ?>
     <style>
         .anpc-display-container {
@@ -89,9 +111,9 @@ function anpc_display_footer() {
             transform: scale(1.05);
         }
         .anpc-item img {
-            max-width: 250px;
+            max-width: <?php echo $current_size['max-width']; ?>;
             height: auto;
-            max-height: 50px;
+            max-height: <?php echo $current_size['max-height']; ?>;
             display: block;
             border: none;
             box-shadow: none;
@@ -101,16 +123,22 @@ function anpc_display_footer() {
                 flex-direction: column;
             }
         }
+        <?php if(!empty($custom_css)) { echo $custom_css; } ?>
     </style>
     <div class="anpc-display-container">
-        <a href="<?php echo $sal_url; ?>" target="_blank" rel="nofollow noopener noreferrer" class="anpc-item" title="ANPC - SAL">
+        <a href="<?php echo $sal_url; ?>" <?php echo $target_attr; ?> rel="nofollow noopener noreferrer" class="anpc-item" title="ANPC - SAL">
             <img src="<?php echo $sal_img; ?>" alt="ANPC SAL">
         </a>
-        <a href="<?php echo $sol_url; ?>" target="_blank" rel="nofollow noopener noreferrer" class="anpc-item" title="ANPC - SOL">
+        <a href="<?php echo $sol_url; ?>" <?php echo $target_attr; ?> rel="nofollow noopener noreferrer" class="anpc-item" title="ANPC - SOL">
             <img src="<?php echo $sol_img; ?>" alt="ANPC SOL">
         </a>
     </div>
     <?php
+}
+
+// Header display function (same as footer but for header hook)
+function anpc_display_header() {
+    anpc_display_footer(); // Reuse the same display logic
 }
 
 /*
@@ -129,7 +157,12 @@ osc_add_hook('admin_menu_init', 'anpc_display_admin_menu');
 // Configuration Link in Plugins List
 osc_add_hook(osc_plugin_path(__FILE__) . '_configure', 'anpc_display_admin_config');
 
-// Footer hook to display content
-osc_add_hook('footer', 'anpc_display_footer');
+// Display hook based on position preference
+$display_position = osc_get_preference('display_position', 'anpc_display');
+if($display_position == 'header') {
+    osc_add_hook('header', 'anpc_display_header');
+} else {
+    osc_add_hook('footer', 'anpc_display_footer');
+}
 
 ?>

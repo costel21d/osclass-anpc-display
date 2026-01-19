@@ -21,8 +21,13 @@ It is a lightweight solution with no external dependencies (images are stored lo
 **Features:**
 *   **Plug & Play:** Works immediately upon activation.
 *   **Privacy First:** Local assets (no hotlinking).
-*   **Configurable:** You can change the SAL/SOL links from the admin panel if needed.
+*   **Configurable:** Customize SAL/SOL links, display position, and icon size from admin panel.
 *   **Responsive:** Icons scale correctly on mobile devices.
+*   **Display Position:** Choose between footer or header placement.
+*   **Icon Sizing:** Three size presets (Small, Medium, Large).
+*   **Custom CSS:** Add your own styling without editing files.
+*   **New Tab Control:** Choose whether links open in new tabs.
+*   **Live Preview:** See changes in admin panel before saving.
 
 == Installation ==
 
@@ -35,5 +40,13 @@ It is a lightweight solution with no external dependencies (images are stored lo
 
 = 1.0.0 =
 * Initial release.
-* Added local assets for SAL/SOL.
-* Added settings page.
+* Added local assets for SAL/SOL icons.
+* Added comprehensive settings page with modern UI.
+* Display position control (footer/header).
+* Icon size presets (small/medium/large).
+* Custom CSS support for advanced styling.
+* New tab control for external links.
+* Live preview in admin panel.
+* GDPR compliant (all assets local).
+* Responsive design for mobile devices.
+
