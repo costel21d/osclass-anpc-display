@@ -92,6 +92,18 @@ The **ANPC Display** plugin automatically displays mandatory SAL (Alternative Di
 
 ---
 
+## 📸 Screenshots
+
+### Frontend Display
+
+The plugin automatically displays SAL and SOL icons in your site's footer:
+
+![ANPC Display Frontend](screenshots/anpc-display-frontend.png)
+
+_Example showing the ANPC compliance icons displayed at the bottom of an Osclass site._
+
+---
+
 ## ⚙️ Configurare / Configuration
 
 ### Setări disponibile / Available Settings

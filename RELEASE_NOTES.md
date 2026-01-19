@@ -38,6 +38,16 @@ First official release of **ANPC Display** - a comprehensive Osclass plugin for 
 
 ---
 
+## 📸 Screenshot
+
+### Live Example
+
+![ANPC Display in Action](screenshots/anpc-display-frontend.png)
+
+_The plugin automatically displays SAL and SOL compliance icons in your site's footer, as shown in this live Osclass installation._
+
+---
+
 ## 📦 Installation
 
 ### Quick Install

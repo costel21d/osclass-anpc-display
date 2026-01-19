@@ -85,6 +85,16 @@ This plugin ensures your Osclass site complies with these legal requirements.
 
 After installation, check your website footer (or header, depending on settings) to verify the SAL and SOL icons are displayed.
 
+### Screenshots
+
+#### Frontend Display
+
+Here's how the plugin appears on a live Osclass site:
+
+![ANPC Display Frontend](screenshots/anpc-display-frontend.png)
+
+_The SAL and SOL compliance icons are automatically displayed in the footer, ensuring legal compliance with ANPC regulations._
+
 ---
 
 ## Configuration
